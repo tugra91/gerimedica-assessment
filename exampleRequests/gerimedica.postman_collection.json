@@ -1,0 +1,118 @@
+{
+	"info": {
+		"_postman_id": "53caafcf-8d1c-4edb-aa28-dd9c392e2bea",
+		"name": "gerimedica",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "localhost:8080/uploadAllData",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "csvFile",
+							"type": "file",
+							"src": "/Users/tugra/Downloads/exercise.csv"
+						}
+					]
+				},
+				"url": {
+					"raw": "localhost:8080/uploadAllData",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"uploadAllData"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8080/getAllData",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/getAllData",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"getAllData"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8080/getAllDataByCVS",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/getAllDataByCVS",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"getAllDataByCVS"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8080/deleteAllData",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/deleteAllData",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"deleteAllData"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8080/getCodeRecordByCode",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"code\" : \"276885007\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/getCodeRecordByCode",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"getCodeRecordByCode"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
