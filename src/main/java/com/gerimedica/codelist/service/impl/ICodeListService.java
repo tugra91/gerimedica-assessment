@@ -69,7 +69,7 @@ public class ICodeListService implements CodeListService {
             }
             if (StringUtils.isNotEmpty(s.get(6))) {
                 try {
-                    entity.setToDate(DateUtil.convertStringLocalDateByFormatter(s.get(5), DateFormatterEnum.DATE_FORMAT_BASIC_LOCALDATE_WITH_HYPEN));
+                    entity.setToDate(DateUtil.convertStringLocalDateByFormatter(s.get(6), DateFormatterEnum.DATE_FORMAT_BASIC_LOCALDATE_WITH_HYPEN));
                 } catch (DateTimeParseException ex) {
                     log.info(CVSTODATELOGINFO, ex);
                 }
