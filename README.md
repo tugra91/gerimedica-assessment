@@ -35,7 +35,6 @@ The app can be personalized by using environment values. Username and password o
 - server_port = Default value is **8080**
 - db_username = Default value is **changeIt**
 - db_password = Default value is **changeIt**
-- file_size = Default value is **50MB**
 
 ## Swagger UI
 
