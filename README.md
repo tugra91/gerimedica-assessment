@@ -40,3 +40,7 @@ The app can be personalized by using environment values. Username and password o
 ## Swagger UI
 
 It might be found swagger ui url at http://localhost:8080/swagger-ui/index.html#/. Please type it in browser.
+
+# Important Note !
+
+###*Please refresh exercise.csv file while uploading the csv file to server, If you are using example /uploadAllData request in postman samples.*
