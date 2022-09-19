@@ -21,8 +21,12 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.mock.web.MockMultipartFile;
 
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -42,17 +46,66 @@ public class CodeListServiceTest {
     private CodeListRepository codeListRepository;
 
     private CodeListService codeListService;
+    private MockMultipartFile csvFile;
 
     @BeforeEach
-    public void init() {
+    public void init() throws IOException {
+        Path csvPath = Paths.get("src", "test", "resources", "data", "exercise-test.csv");
+        csvFile = new MockMultipartFile("exercise-test.csv", new FileInputStream(csvPath.toFile()).readAllBytes());
         MockitoAnnotations.openMocks(this);
         codeListService = new ICodeListService(codeListRepository);
     }
 
     @Test
+    public void testUploadAllData_allCaseinOneFunction_returnSuccess() throws IOException {
+        CodeEntity caseEntity1 = new CodeEntity();
+        caseEntity1.setSource("ZIB");
+        caseEntity1.setCodeListCode("ZIB001");
+        caseEntity1.setCode("271636001");
+        caseEntity1.setDisplayValue("Polsslag regelmatig");
+        caseEntity1.setLongDescription("The long description is necessary");
+        caseEntity1.setFromDate(DateUtil.convertStringLocalDateByFormatter("01-01-2019", DateFormatterEnum.DATE_FORMAT_BASIC_LOCALDATE_WITH_HYPEN));
+        caseEntity1.setSortingPriority(Long.valueOf("1"));
+
+        CodeEntity caseEntity2 = new CodeEntity();
+        caseEntity2.setSource("ZIB");
+        caseEntity2.setCodeListCode("ZIB001");
+        caseEntity2.setCode("61086009");
+        caseEntity2.setDisplayValue("Polsslag onregelmatig");
+        caseEntity2.setLongDescription("");
+        caseEntity2.setToDate(DateUtil.convertStringLocalDateByFormatter("01-01-2019", DateFormatterEnum.DATE_FORMAT_BASIC_LOCALDATE_WITH_HYPEN));
+        caseEntity2.setSortingPriority(Long.valueOf("2"));
+
+        CodeEntity caseEntity3 = new CodeEntity();
+        caseEntity3.setSource("ZIB");
+        caseEntity3.setCodeListCode("ZIB001");
+        caseEntity3.setCode("Type 1");
+        caseEntity3.setDisplayValue("Losse harde keutels, zoals noten");
+        caseEntity3.setLongDescription("");
+        caseEntity3.setFromDate(DateUtil.convertStringLocalDateByFormatter("01-01-2019", DateFormatterEnum.DATE_FORMAT_BASIC_LOCALDATE_WITH_HYPEN));
+
+        CodeEntity caseEntity4 = new CodeEntity();
+        caseEntity4.setSource("ZIB");
+        caseEntity4.setCodeListCode("ZIB001");
+        caseEntity4.setCode("Type 1");
+        caseEntity4.setDisplayValue("Losse harde keutels, zoals noten");
+        caseEntity4.setLongDescription("");
+
+        List<CodeEntity> entityInputList = List.of(caseEntity1, caseEntity2, caseEntity3, caseEntity4);
+        Iterable<CodeEntity> entityOutputList = List.of(caseEntity1, caseEntity2, caseEntity3, caseEntity4);
+
+        when(codeListRepository.saveAll(Mockito.eq(entityInputList))).thenReturn(entityOutputList);
+
+        CommonOutput actualOutput = codeListService.uploadAllData(csvFile);
+
+        Assertions.assertNotNull(actualOutput);
+        Assertions.assertEquals("All Data is recorded successed", actualOutput.message());
+
+    }
+
+    @Test
     public void testGetCodeRecordByCode_validResponse_returnSuccess() {
         GetCodeRecordByCodeInput input = new GetCodeRecordByCodeInput("1");
-
         CodeEntity codeEntity = new CodeEntity();
         codeEntity.setCode("1");
         codeEntity.setCodeListCode("AB");
