@@ -16,17 +16,17 @@
 - JDK 18
 
 ### How to initialize the app ?
-Opened the terminal and then please type commands in below. They will be installed and started app. After all you can use the app by using those postman requests.
+Opened the terminal and go to the folder which localeted codeList application files then please type command that is in below by whether your chip be M1 or not in Terminal. They will be installed and started app. After all you can use the app by using those postman requests.
 
 - **Important Note** : If have been using Macbook which is based on M1 Chip, It can be lived some issues due to compatibility problems. Please add **--platform=linux/amd64** to following command lines to overcome those issues.
 
-### Build Application with Docker
+### Build and Deploy application without M1 Chip
 ``` 
-docker build -t gerimedica-service --platform=linux/amd64 .
+sh ./codeList.sh
 ```
-### Deploy Application with Docker
+### Build and Deploy application with M1 Chip
 ``` 
-docker run -p 8080:8080 -e server_port=8080 -e db_password=db_hard_password -e db_username=admin --name gerimedica-container gerimedica-service
+sh ./codeList.sh DOCKER_DEFAULT_PLATFORM=linux/amd64
 ```
 
 ## Environment Values
