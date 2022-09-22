@@ -16,7 +16,7 @@
 - JDK 18
 
 ### How to initialize the app ?
-Opened the terminal and then please type commands in below. They will be installed and started app. After all you can use the app by using those postman requests. CSV Data lists will be loaded after initialization.
+Opened the terminal and then please type commands in below. They will be installed and started app. After all you can use the app by using those postman requests.
 
 - **Important Note** : If have been using Macbook which is based on M1 Chip, It can be lived some issues due to compatibility problems. Please add **--platform=linux/amd64** to following command lines to overcome those issues.
 
